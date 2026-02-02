@@ -55,15 +55,15 @@ git checkout your-name/feature-description
 
 **Branch Naming Convention**: Use your name followed by a brief description, for example:
 - `van/login-tests`
-- `john/cart-functionality`
-- `sarah/product-search-tests`
+- `joy/cart-functionality`
+- `hyra/product-search-tests`
 
 ### 4. Create Your Test Folder
 
 For better test case management, each team member should create their own folder under `cypress/e2e/`:
 
 1. Navigate to the `cypress/e2e/` directory
-2. Create a folder with your name (e.g., `Van`, `John`, `Sarah`)
+2. Create a folder with your name (e.g., `Van`, `Joy`, `Hyra`)
 3. Place all your test files inside your personal folder
 
 **Example structure:**
@@ -72,13 +72,13 @@ cypress/
   └── e2e/
       ├── Van/
       │   └── e2e.cy.ts
-      ├── John/
+      ├── Joy/
       │   └── login.cy.ts
-      └── Sarah/
+      └── Hyra/
           └── cart.cy.ts
 ```
 
-**Folder Naming Convention**: Use your first name or preferred identifier (e.g., `Van`, `John`, `Sarah`)
+**Folder Naming Convention**: Use your first name or preferred identifier (e.g., `Van`, `Joy`, `Hyra`)
 
 ### 5. Running Tests
 
