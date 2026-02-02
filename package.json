@@ -1,0 +1,28 @@
+{
+  "name": "test-automation-tutorial",
+  "version": "1.0.0",
+  "description": "Cypress test automation tutorial for QA team training",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:headed": "cypress run --headed"
+  },
+  "keywords": [
+    "cypress",
+    "test-automation",
+    "e2e-testing",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^15.9.0",
+    "typescript": "^5.9.3",
+    "@types/node": "^22.10.2"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=10.0.0"
+  }
+}

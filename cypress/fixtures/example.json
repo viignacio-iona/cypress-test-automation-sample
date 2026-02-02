@@ -1,0 +1,16 @@
+{
+  "user": {
+    "username": "testuser",
+    "password": "testpassword",
+    "email": "test@example.com"
+  },
+  "product": {
+    "name": "Samsung galaxy s6",
+    "price": "$360",
+    "description": "The Samsung Galaxy S6 is powered by 1.5GHz octa-core Samsung Exynos 7420 processor"
+  },
+  "testData": {
+    "message": "This is an example fixture file",
+    "description": "You can use fixtures to store test data that can be reused across multiple tests"
+  }
+}
