@@ -1,5 +1,4 @@
 describe('Login Flow', () => {
-  // TODO: Add login test cases here
   describe('Login tests', () => {
     beforeEach(() => {
       cy.visit('/');
@@ -21,8 +20,9 @@ describe('Login Flow', () => {
       cy.get('#nameofuser').contains('test@test.com');
     });
   });
+
   // - Invalid username
-  it('should show a browser prompt when the credentials are incorrect', () => {
+  it('should show a browser prompt when the username incorrect', () => {
     cy.window().then((win) => {
       cy.stub(win, 'alert').as('alertStub');
     });
@@ -36,12 +36,41 @@ describe('Login Flow', () => {
       .within(() => {
         cy.get('#loginusername')
           .clear()
-          .invoke('val', 'testuser')
+          .invoke('val', 'testincorrect@test.com')
           .trigger('input');
           
         cy.get('#loginpassword')
           .clear()
-          .invoke('val', 'wrongpassword')
+          .invoke('val', 'test')
+          .trigger('input');
+          
+        cy.contains('button', 'Log in').click();
+      });
+  
+    // Verify alert was called with "Wrong password"
+    cy.get('@alertStub').should('have.been.calledWith', 'User does not exist.');
+  });
+  // - Invalid password
+  it('should show a browser prompt when the password is incorrect', () => {
+    cy.window().then((win) => {
+      cy.stub(win, 'alert').as('alertStub');
+    });
+  
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+  
+    cy.get('#logInModal')
+      .should('be.visible')
+      .within(() => {
+        cy.get('#loginusername')
+          .clear()
+          .invoke('val', 'test@test.com')
+          .trigger('input');
+          
+        cy.get('#loginpassword')
+          .clear()
+          .invoke('val', 'testincorrect')
           .trigger('input');
           
         cy.contains('button', 'Log in').click();
@@ -50,7 +79,6 @@ describe('Login Flow', () => {
     // Verify alert was called with "Wrong password"
     cy.get('@alertStub').should('have.been.calledWith', 'Wrong password.');
   });
-  // - Invalid password
   // - Empty username field
   // - Empty password field
   // - Both fields empty
