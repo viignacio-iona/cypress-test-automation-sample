@@ -3,7 +3,7 @@ describe('Login Flow', () => {
     beforeEach(() => {
       cy.visit('/');
     });
-  // Test scenarios to implement:
+    
   // - Valid login with correct credentials
   it('should login with correct credentials', () => {
     cy.get('#narvbarx').within(() => {
