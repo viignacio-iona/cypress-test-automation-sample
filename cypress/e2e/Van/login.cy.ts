@@ -47,7 +47,6 @@ describe('Login Flow', () => {
         cy.contains('button', 'Log in').click();
       });
   
-    // Verify alert was called with "Wrong password"
     cy.get('@alertStub').should('have.been.calledWith', 'User does not exist.');
   });
   // - Invalid password
@@ -76,13 +75,131 @@ describe('Login Flow', () => {
         cy.contains('button', 'Log in').click();
       });
   
-    // Verify alert was called with "Wrong password"
     cy.get('@alertStub').should('have.been.calledWith', 'Wrong password.');
   });
+
   // - Empty username field
+  it('should show a browser prompt when the username is empty', () => {
+    cy.window().then((win) => {
+      cy.stub(win, 'alert').as('alertStub');
+    });
+  
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+  
+    cy.get('#logInModal')
+      .should('be.visible')
+      .within(() => {
+        cy.get('#loginusername')
+          .clear()
+          .invoke('val', '')
+          .trigger('input');
+          
+        cy.get('#loginpassword')
+          .clear()
+          .invoke('val', 'testincorrect')
+          .trigger('input');
+          
+        cy.contains('button', 'Log in').click();
+      });
+  
+    cy.get('@alertStub').should('have.been.calledWith', 'Please fill out Username and Password.');
+  });
+  
   // - Empty password field
+  it('should show a browser prompt when the password is empty', () => {
+    cy.window().then((win) => {
+      cy.stub(win, 'alert').as('alertStub');
+    });
+  
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+  
+    cy.get('#logInModal')
+      .should('be.visible')
+      .within(() => {
+        cy.get('#loginusername')
+          .clear()
+          .invoke('val', 'test@test.com')
+          .trigger('input');
+          
+        cy.get('#loginpassword')
+          .clear()
+          .invoke('val', '')
+          .trigger('input');
+          
+        cy.contains('button', 'Log in').click();
+      });
+  
+    cy.get('@alertStub').should('have.been.calledWith', 'Please fill out Username and Password.');
+  });
+  
   // - Both fields empty
+  it('should show a browser prompt when both fields are empty', () => {
+    cy.window().then((win) => {
+      cy.stub(win, 'alert').as('alertStub');
+    });
+  
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+  
+    cy.get('#logInModal')
+      .should('be.visible')
+      .within(() => {
+        cy.get('#loginusername')
+          .clear()
+          .invoke('val', '')
+          .trigger('input');
+          
+        cy.get('#loginpassword')
+          .clear()
+          .invoke('val', '')
+          .trigger('input');
+          
+        cy.contains('button', 'Log in').click();
+      });
+  
+    cy.get('@alertStub').should('have.been.calledWith', 'Please fill out Username and Password.');
+  });
+  
   // - Login modal opens and closes correctly
+  it.only('should open and close the login modal', () => {
+    // Via x button
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+
+    cy.get('#logInModal')
+      .should('be.visible')
+      .should('have.attr', 'tabindex', '-1')
+      .and('have.focus');
+
+    cy.get('#logInModal')
+      .find('button.close')
+      .click();
+
+    cy.get('#logInModal').should('not.be.visible');
+
+    // Via Close button
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+
+    cy.get('#logInModal')
+      .should('be.visible')
+      .should('have.attr', 'tabindex', '-1')
+      .and('have.focus');
+
+    cy.get('#logInModal')
+      .find('button').contains('Close')
+      .click();
+
+    cy.get('#logInModal').should('not.be.visible');
+  });
+
   // - Successful login redirects appropriately
   });
 });
