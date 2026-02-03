@@ -22,6 +22,34 @@ describe('Login Flow', () => {
     });
   });
   // - Invalid username
+  it('should show a browser prompt when the credentials are incorrect', () => {
+    cy.window().then((win) => {
+      cy.stub(win, 'alert').as('alertStub');
+    });
+  
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+  
+    cy.get('#logInModal')
+      .should('be.visible')
+      .within(() => {
+        cy.get('#loginusername')
+          .clear()
+          .invoke('val', 'testuser')
+          .trigger('input');
+          
+        cy.get('#loginpassword')
+          .clear()
+          .invoke('val', 'wrongpassword')
+          .trigger('input');
+          
+        cy.contains('button', 'Log in').click();
+      });
+  
+    // Verify alert was called with "Wrong password"
+    cy.get('@alertStub').should('have.been.calledWith', 'Wrong password.');
+  });
   // - Invalid password
   // - Empty username field
   // - Empty password field
