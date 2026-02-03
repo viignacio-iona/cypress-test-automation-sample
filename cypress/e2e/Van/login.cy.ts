@@ -166,7 +166,7 @@ describe('Login Flow', () => {
   });
   
   // - Login modal opens and closes correctly
-  it.only('should open and close the login modal', () => {
+  it('should open and close the login modal', () => {
     // Via x button
     cy.get('#narvbarx').within(() => {
       cy.get('[data-target="#logInModal"]').click();
@@ -201,5 +201,22 @@ describe('Login Flow', () => {
   });
 
   // - Successful login redirects appropriately
+  it('should redirect to the home page after successful login', () => {
+    cy.get('#narvbarx').within(() => {
+      cy.get('[data-target="#logInModal"]').click();
+    });
+
+    cy.get('#logInModal').within(() => {
+      cy.get('#loginusername').clear().invoke('val', 'test@test.com');
+      cy.get('#loginpassword').clear().invoke('val', 'test');
+      cy.contains('button', 'Log in').click();
+    });
+
+    cy.get('#narvbarx').within(() => {
+      cy.get('#nameofuser').contains('test@test.com').click();
+    });
+
+    cy.url().should('include', '/#');
+  });
   });
 });
