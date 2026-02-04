@@ -24,7 +24,7 @@ describe('Login Flow', () => {
   // - Invalid username
   it('should show a browser prompt when the username incorrect', () => {
     cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alertStub');
+      cy.stub(win as any, 'alert').as('alertStub');
     });
   
     cy.get('#narvbarx').within(() => {
@@ -52,7 +52,7 @@ describe('Login Flow', () => {
   // - Invalid password
   it('should show a browser prompt when the password is incorrect', () => {
     cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alertStub');
+      cy.stub(win as any, 'alert').as('alertStub');
     });
   
     cy.get('#narvbarx').within(() => {
@@ -81,7 +81,7 @@ describe('Login Flow', () => {
   // - Empty username field
   it('should show a browser prompt when the username is empty', () => {
     cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alertStub');
+      cy.stub(win as any, 'alert').as('alertStub');
     });
   
     cy.get('#narvbarx').within(() => {
@@ -110,7 +110,7 @@ describe('Login Flow', () => {
   // - Empty password field
   it('should show a browser prompt when the password is empty', () => {
     cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alertStub');
+      cy.stub(win as any, 'alert').as('alertStub');
     });
   
     cy.get('#narvbarx').within(() => {
@@ -139,7 +139,7 @@ describe('Login Flow', () => {
   // - Both fields empty
   it('should show a browser prompt when both fields are empty', () => {
     cy.window().then((win) => {
-      cy.stub(win, 'alert').as('alertStub');
+      cy.stub(win as any, 'alert').as('alertStub');
     });
   
     cy.get('#narvbarx').within(() => {
