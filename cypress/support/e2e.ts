@@ -16,12 +16,19 @@
 // Import commands.js using ES2015 syntax:
 import './commands';
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+// Helper function to generate random email address
+export const generateRandomEmail = (): string => {
+  return `test${Date.now()}${Math.random().toString(36).substring(2, 8)}@test.com`;
+};
 
-// Example: Set up global test configuration
-// Cypress.on('uncaught:exception', (err, runnable) => {
-//   // returning false here prevents Cypress from
-//   // failing the test on uncaught exceptions
-//   return false;
-// });
+// Make it available globally via Cypress namespace
+declare global {
+  namespace Cypress {
+    interface Cypress {
+      generateRandomEmail: () => string;
+    }
+  }
+}
+
+// Assign to Cypress global for easy access
+(Cypress as any).generateRandomEmail = generateRandomEmail;
