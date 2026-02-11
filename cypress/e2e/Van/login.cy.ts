@@ -1,5 +1,4 @@
-describe('Login Flow', () => {
-  describe('Login tests', () => {
+describe('Login flow e2e tests', () => {
     beforeEach(() => {
       cy.visit('/');
     });
@@ -217,6 +216,5 @@ describe('Login Flow', () => {
     });
 
     cy.url().should('include', '/#');
-  });
   });
 });

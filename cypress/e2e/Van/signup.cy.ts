@@ -1,5 +1,4 @@
-describe('Signup tests', () => {
-  describe('Signup tests', () => {
+  describe('Signup flow e2e tests', () => {
     beforeEach(() => {
       cy.visit('/');
     });
@@ -182,6 +181,5 @@ describe('Signup tests', () => {
       .click();
 
     cy.get('#logInModal').should('not.be.visible');
-  });
   });
 });
