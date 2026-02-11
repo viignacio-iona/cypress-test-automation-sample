@@ -178,7 +178,7 @@ describe('Login Flow', () => {
       .and('have.focus');
 
     cy.get('#logInModal')
-      .find('button.close')
+      .find('button[aria-label="Close"]')
       .click();
 
     cy.get('#logInModal').should('not.be.visible');
