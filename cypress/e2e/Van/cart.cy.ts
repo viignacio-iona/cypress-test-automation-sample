@@ -1,6 +1,6 @@
 describe('Shopping Cart', () => {
   beforeEach(() => {
-    cy.visit("/cart.html");
+    cy.visit("/");
   });
   // TODO: Add cart test cases here
   // Test scenarios to implement:
