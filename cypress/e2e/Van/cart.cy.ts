@@ -1,4 +1,7 @@
 describe('Shopping Cart', () => {
+  beforeEach(() => {
+    cy.visit("/");
+  });
   // TODO: Add cart test cases here
   // Test scenarios to implement:
   // - Add product to cart from PLP
